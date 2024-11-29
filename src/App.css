@@ -1,38 +1,187 @@
-.App {
+/* Общие стили */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение элементов */
+  justify-content: flex-start; /* Элементы идут сверху вниз */
+  align-items: center; /* Центрируем по горизонтали */
+  height: 100vh; /* Полная высота экрана */
+  margin: 0; /* Убираем отступы */
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #34495e;
+  text-align: center;
+  width: 100%; /* Растягиваем на всю ширину */
+  margin-top: 80px; /* Отступ 110px от верхней границы экрана */
+  margin-bottom: 10px; /* Отступ снизу для заголовка */
+}
+
+h2, h3 {
+  font-weight: normal;
+  margin-bottom: 15px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Основной контейнер для викторины */
+.quiz-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 95%;
+  margin: 10px;
+  text-align: center;
+  margin-top: 50px; /* Отступ сверху для блока с вопросами */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.options-container {
+  margin-top: 20px;
+  text-align: left; /* Центрируем блок, но выравниваем содержимое слева */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.option-label {
+  display: block;
+  margin: 10px 0;
+  font-size: 18px;
+  color: #34495e;
+  cursor: pointer;
+  padding-left: 20px; /* Отступ слева для радиокнопки */
+}
+
+.option-radio {
+  margin-right: 10px;
+  accent-color: #3498db; /* Цвет радиокнопки */
+}
+
+/* Стили для кнопок */
+button {
+  background-color: #3498db;
   color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+  margin: 10px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #2980b9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Стиль для сообщений об ответах */
+.correct-message {
+  color: green;
+  margin-top: 10px;
+}
+
+.incorrect-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Плавное появление сообщений */
+.quiz-container .correct-message,
+.quiz-container .incorrect-message {
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Стиль для компонента Result (центрируем его на экране) */
+.result-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 95%;
+  margin: 10px;
+  margin-top: 200px; /* Отступ сверху для компонента */
+  display: flex;
+  justify-content: center; /* Центрируем по горизонтали */
+  align-items: center; /* Центрируем по вертикали */
+  flex-direction: column; /* Элементы внутри компонента будут располагаться по вертикали */
+  
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 10px 20px;
+  }
+
+  .quiz-container,
+  .result-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #34495e;
+    text-align: center;
+    width: 90%; /* Растягиваем на всю ширину */
+    margin-top: 20px; /* Отступ 110px от верхней границы экрана */
+    margin-bottom: 10px; /* Отступ снизу для заголовка */
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 8px 15px;
+  }
+
+  .quiz-container,
+  .result-container {
+    padding: 15px;
   }
 }

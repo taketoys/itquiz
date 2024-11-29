@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Quiz from './Quiz';
+import Result from './Result';
+import './App.css'; 
+import questions from './questions.json'; 
 
-function App() {
+const App = () => {
+  const [isQuizFinished, setIsQuizFinished] = useState(false); 
+
+  const handleFinish = () => {
+    setIsQuizFinished(true);  // Завершаем тест
+  };
+
+  const handleRestart = () => {
+    setIsQuizFinished(false);  // Перезапускаем викторину
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!isQuizFinished && <h1>IT викторина</h1>}  {/* Показываем заголовок только если тест не завершен */}
+      {!isQuizFinished ? (
+        <Quiz questions={questions} onFinish={handleFinish} />  
+      ) : (
+        <Result onRestart={handleRestart} />  
+      )}
     </div>
   );
-}
+};
 
 export default App;
